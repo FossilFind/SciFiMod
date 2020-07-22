@@ -1,9 +1,0 @@
-{
-	"type": "minecraft:smelting",
-	"ingredient": {
-		"item": "minecraft:quartz"
-	},
-	"result": "scifi:graphite",
-	"experience": 5.0,
-	"cookingtime": 60
-}

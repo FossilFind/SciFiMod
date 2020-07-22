@@ -1,9 +1,0 @@
-{
-	"type": "minecraft:smelting",
-	"ingredient": {
-		"item": "scifi:water_canister"
-	},
-	"result": "scifi:steam_canister",
-	"experience": 5.0,
-	"cookingtime": 60
-}

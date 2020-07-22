@@ -1,6 +1,0 @@
-{
-	"parent": "scifi:block/frame",
-	"textures": {
-		"all": "block/iron_block"
-	}
-}
