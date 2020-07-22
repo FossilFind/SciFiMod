@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"T T",
+		"TTT",
+		"T T"
+	],
+	"key": {
+		"T": {
+			"item": "scifi:titanium_ingot"
+		}
+	},
+	"result": {
+		"item": "scifi:titanium_frame"
+	}
+}

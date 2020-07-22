@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "scifi:titanium_block"
+		}
+	],
+	"result": {
+		"count": 9,
+		"item": "scifi:titanium_ingot"
+	}
+}

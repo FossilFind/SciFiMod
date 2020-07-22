@@ -1,0 +1,85 @@
+---- Minecraft Crash Report ----
+// Who set us up the TNT?
+
+Time: 7/20/20 5:34 PM
+Description: Ticking memory connection
+
+java.lang.RuntimeException: Why did the advancements not load yet?!
+	at net.minecraftforge.common.AdvancementLoadFix.loadVisibility(AdvancementLoadFix.java:51) ~[?:?] {re:classloading}
+	at net.minecraft.advancements.PlayerAdvancements.load(PlayerAdvancements.java:157) ~[?:?] {re:classloading}
+	at net.minecraft.advancements.PlayerAdvancements.<init>(PlayerAdvancements.java:65) ~[?:?] {re:classloading}
+	at net.minecraft.server.management.PlayerList.getPlayerAdvancements(PlayerList.java:806) ~[?:?] {re:classloading}
+	at net.minecraft.entity.player.ServerPlayerEntity.<init>(ServerPlayerEntity.java:167) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.management.PlayerList.createPlayerForUser(PlayerList.java:395) ~[?:?] {re:classloading}
+	at net.minecraft.network.login.ServerLoginNetHandler.tryAcceptPlayer(ServerLoginNetHandler.java:120) ~[?:?] {re:classloading}
+	at net.minecraft.network.login.ServerLoginNetHandler.tick(ServerLoginNetHandler.java:64) ~[?:?] {re:classloading}
+	at net.minecraft.network.NetworkManager.tick(NetworkManager.java:246) ~[?:?] {re:classloading}
+	at net.minecraft.network.NetworkSystem.tick(NetworkSystem.java:152) ~[?:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:903) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:821) ~[?:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:120) ~[?:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:662) [?:?] {re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.minecraftforge.common.AdvancementLoadFix.loadVisibility(AdvancementLoadFix.java:51)
+	at net.minecraft.advancements.PlayerAdvancements.load(PlayerAdvancements.java:157)
+	at net.minecraft.advancements.PlayerAdvancements.<init>(PlayerAdvancements.java:65)
+	at net.minecraft.server.management.PlayerList.getPlayerAdvancements(PlayerList.java:806)
+	at net.minecraft.entity.player.ServerPlayerEntity.<init>(ServerPlayerEntity.java:167)
+	at net.minecraft.server.management.PlayerList.createPlayerForUser(PlayerList.java:395)
+	at net.minecraft.network.login.ServerLoginNetHandler.tryAcceptPlayer(ServerLoginNetHandler.java:120)
+	at net.minecraft.network.login.ServerLoginNetHandler.tick(ServerLoginNetHandler.java:64)
+	at net.minecraft.network.NetworkManager.tick(NetworkManager.java:246)
+
+-- Ticking connection --
+Details:
+	Connection: net.minecraft.network.NetworkManager@1f6b4494
+Stacktrace:
+	at net.minecraft.network.NetworkSystem.tick(NetworkSystem.java:152)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:903)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:821)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:120)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:662)
+	at java.lang.Thread.run(Unknown Source)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.15.2
+	Minecraft Version ID: 1.15.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_261, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 479264840 bytes (457 MB) / 2230845440 bytes (2127 MB) up to 3801088000 bytes (3625 MB)
+	CPUs: 12
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	ModLauncher: 5.1.0+69+master.79f13f7
+	ModLauncher launch target: fmluserdevclient
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		/eventbus-2.2.0-service.jar eventbus PLUGINSERVICE 
+		/forge-1.15.2-31.2.0_mapped_snapshot_20200514-1.15.1-launcher.jar object_holder_definalize PLUGINSERVICE 
+		/forge-1.15.2-31.2.0_mapped_snapshot_20200514-1.15.1-launcher.jar runtime_enum_extender PLUGINSERVICE 
+		/accesstransformers-2.1.1-shadowed.jar accesstransformer PLUGINSERVICE 
+		/forge-1.15.2-31.2.0_mapped_snapshot_20200514-1.15.1-launcher.jar capability_inject_definalize PLUGINSERVICE 
+		/forge-1.15.2-31.2.0_mapped_snapshot_20200514-1.15.1-launcher.jar runtimedistcleaner PLUGINSERVICE 
+		/forge-1.15.2-31.2.0_mapped_snapshot_20200514-1.15.1-launcher.jar fml TRANSFORMATIONSERVICE 
+	FML: 31.2
+	Forge: net.minecraftforge:31.2.0
+	FML Language Providers: 
+		javafml@31.2
+		minecraft@1
+	Mod List: 
+		client-extra.jar Minecraft {minecraft@1.15.2 DONE}
+		forge-1.15.2-31.2.0_mapped_snapshot_20200514-1.15.1-recomp.jar Forge {forge@31.2.0 DONE}
+		main SciFiMod {scifi@0.1.0 DONE}
+	Player Count: 0 / 8; []
+	Data Packs: vanilla, mod:forge (incompatible), mod:scifi
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'

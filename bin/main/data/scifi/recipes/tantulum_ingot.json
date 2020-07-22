@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "space:tantulum_block"
+		}
+	],
+	"result": {
+		"count": 9,
+		"item": "space:tantulum_ingot"
+	}
+}

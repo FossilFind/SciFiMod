@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:smelting",
+	"ingredient": {
+		"item": "scifi:rutile"
+	},
+	"result": "scifi:titanium_ingot",
+	"experience": 5.0,
+	"cookingtime": 60
+}

@@ -1,0 +1,12 @@
+modLoader="javafml"
+loaderVersion="[31,)"
+[[mods]]
+modId="scifi"
+state="development"
+version="0.1.0"
+displayName="SciFiMod"
+logoFile="logo.png"
+authors="FossilFind"
+description='''
+Science Fiction
+'''

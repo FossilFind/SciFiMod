@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"TTT",
+		"TTT",
+		"TTT"
+	],
+	"key": {
+		"T": {
+			"item": "scifi:tantulum_ingot"
+		}
+	},
+	"result": {
+		"item": "scifi:tantulum_block"
+	}
+}

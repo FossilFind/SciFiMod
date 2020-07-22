@@ -1,0 +1,6 @@
+{
+	"parent": "scifi:block/frame",
+	"textures": {
+		"all": "scifi:block/tantulum_carbide_block"
+	}
+}
