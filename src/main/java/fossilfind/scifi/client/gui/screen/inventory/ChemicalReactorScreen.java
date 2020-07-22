@@ -64,14 +64,14 @@ public class ChemicalReactorScreen extends ContainerScreen<ChemicalReactorContai
 		FluidStack tank2 = container.getTank(2).getFluid();
 		
 		ArrayList<String> tank1Text = new ArrayList<String>();
-		tank1Text.add(tank1.getFluid() == Fluids.WATER ? "Water" : tank1.getFluid() == FluidInit.STEAM.get() ? "Steam" : "Empty");
+		tank1Text.add(tank1.getFluid() == Fluids.EMPTY ? "Empty" : tank1.getDisplayName().getFormattedText());
 		if(KeyboardHelper.isHoldingShift())
 			tank1Text.add(tank1.getAmount() + " / 20000mB");
 		else
 			tank1Text.add(tank1.getAmount() / 1000 + " / 20B");
 		
 		ArrayList<String> tank2Text = new ArrayList<String>();
-		tank2Text.add(tank2.getFluid() == Fluids.WATER ? "Water" : tank2.getFluid() == FluidInit.STEAM.get() ? "Steam" : "Empty");
+		tank2Text.add(tank2.getFluid() == Fluids.EMPTY ? "Empty" : tank2.getDisplayName().getFormattedText());
 		if(KeyboardHelper.isHoldingShift())
 			tank2Text.add(tank2.getAmount() + " / 20000mB");
 		else
@@ -116,7 +116,7 @@ public class ChemicalReactorScreen extends ContainerScreen<ChemicalReactorContai
 			else if(tank2.getFluid() == FluidInit.HYDROGEN.get()) fluidX = 32;
 			else if(tank2.getFluid() == FluidInit.OXYGEN.get()) fluidX = 48;
 			else if(tank2.getFluid() == FluidInit.CHLORINE.get()) fluidX = 64;
-			else if(tank2.getFluid() == FluidInit.CHLORINE.get()) fluidX = 80;
+			else if(tank2.getFluid() == FluidInit.STEAM.get()) fluidX = 80;
 			
 			blit(guiLeft + 53, guiTop + 38 + 32 - (tank2.getAmount() * 32 / 20000), fluidX, 32 - tank2.getAmount() * 32 / 20000, 16, tank2.getAmount() * 32 / 20000);
 		}

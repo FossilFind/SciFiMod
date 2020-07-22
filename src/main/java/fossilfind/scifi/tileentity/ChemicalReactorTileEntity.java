@@ -269,6 +269,10 @@ public class ChemicalReactorTileEntity extends LockableLootTileEntity implements
 	{
 		if(!checkLootAndWrite(compound))
 			ItemStackHelper.saveAllItems(compound, contents);
+		compound.putInt("cookTime", cookTime);
+		compound.put("recipe", recipe.writeToNBT(new CompoundNBT()));
+		compound.put("tank1", tank1.writeToNBT(new CompoundNBT()));
+		compound.put("tank2", tank2.writeToNBT(new CompoundNBT()));
 		return super.write(compound);
 	}
 	
@@ -279,6 +283,24 @@ public class ChemicalReactorTileEntity extends LockableLootTileEntity implements
 		contents = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
 		if(!checkLootAndRead(compound))
 			ItemStackHelper.loadAllItems(compound, contents);
+		cookTime = compound.getInt("cookTime");
+		recipe = ChemicalReactorRecipe.readFromNBT(compound.getCompound("recipe"));
+		tank1 = new FluidTank(20000);
+		tank2 = new FluidTank(20000);
+		tank1.readFromNBT(compound.getCompound("tank1"));
+		tank2.readFromNBT(compound.getCompound("tank2"));
+	}
+	
+	@Override
+	public CompoundNBT getUpdateTag()
+	{
+		return write(new CompoundNBT());
+	}
+	
+	@Override
+	public void handleUpdateTag(CompoundNBT tag)
+	{
+		read(tag);
 	}
 	
 	@Override
@@ -415,8 +437,8 @@ public class ChemicalReactorTileEntity extends LockableLootTileEntity implements
 	
 	public ChemicalReactorRecipe getRecipe(FluidStack fluid1, FluidStack fluid2, ItemStack item1, ItemStack item2, ItemStack item3)
 	{
-		if(hasFluidInTanks(ChemicalReactorRecipe.SILICA_FIBER.getFluidIngredient1().getFluid(), fluid1)
-				&& hasFluidInTanks(ChemicalReactorRecipe.SILICA_FIBER.getFluidIngredient2().getFluid(), fluid1)
+		if(hasFluidInTanks(ChemicalReactorRecipe.SILICA_FIBER.getFluidIngredient1().getFluid(), fluid1, fluid2)
+				&& hasFluidInTanks(ChemicalReactorRecipe.SILICA_FIBER.getFluidIngredient2().getFluid(), fluid1, fluid2)
 				&& hasItemInSlots(ChemicalReactorRecipe.SILICA_FIBER.getIngredient1().getItem(), item1, item2, item3) 
 				&& hasItemInSlots(ChemicalReactorRecipe.SILICA_FIBER.getIngredient2().getItem(), item1, item2, item3) 
 				&& hasItemInSlots(ChemicalReactorRecipe.SILICA_FIBER.getIngredient3().getItem(), item1, item2, item3) 
@@ -439,6 +461,9 @@ public class ChemicalReactorTileEntity extends LockableLootTileEntity implements
 	
 	private boolean hasItemInSlots(Item item, ItemStack... stacks)
 	{
+		if(item == ItemStack.EMPTY.getItem())
+			return true;
+		
 		for(ItemStack stack : stacks)
 		{
 			if(stack.getItem() == item)

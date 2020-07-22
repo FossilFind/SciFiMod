@@ -28,7 +28,7 @@ public class BlockInit
 	public static final RegistryObject<Block> TANTULUM_FRAME = BLOCKS.register("tantulum_frame", () -> new Block(Block.Properties.from(Blocks.IRON_BLOCK).notSolid()));
 	public static final RegistryObject<Block> TANTULUM_CARBIDE_FRAME = BLOCKS.register("tantulum_carbide_frame", () -> new Block(Block.Properties.from(Blocks.IRON_BLOCK).notSolid()));
 	public static final RegistryObject<Block> LUNAR_REGOLITH = BLOCKS.register("lunar_regolith", () -> new Block(Block.Properties.from(Blocks.SAND)));
-	public static final RegistryObject<Block> REFINERY = BLOCKS.register("refinery", () -> new RefineryBlock(Block.Properties.from(Blocks.FURNACE).sound(SoundType.ANVIL)));
-	public static final RegistryObject<Block> ELECTROLYZER = BLOCKS.register("electrolyzer", () -> new ElectrolyzerBlock(Block.Properties.from(Blocks.FURNACE).sound(SoundType.ANVIL)));
-	public static final RegistryObject<Block> CHEMICAL_REACTOR = BLOCKS.register("chemical_reactor", () -> new ChemicalReactorBlock(Block.Properties.from(Blocks.FURNACE).sound(SoundType.ANVIL)));
+	public static final RegistryObject<Block> REFINERY = BLOCKS.register("refinery", () -> new RefineryBlock(Block.Properties.from(Blocks.FURNACE).lightValue(0).sound(SoundType.ANVIL)));
+	public static final RegistryObject<Block> ELECTROLYZER = BLOCKS.register("electrolyzer", () -> new ElectrolyzerBlock(Block.Properties.from(Blocks.FURNACE).lightValue(0).sound(SoundType.ANVIL)));
+	public static final RegistryObject<Block> CHEMICAL_REACTOR = BLOCKS.register("chemical_reactor", () -> new ChemicalReactorBlock(Block.Properties.from(Blocks.FURNACE).lightValue(0).sound(SoundType.ANVIL)));
 }

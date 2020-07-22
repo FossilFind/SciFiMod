@@ -5,6 +5,7 @@ import fossilfind.scifi.init.ItemInit;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.fluids.FluidStack;
 
 public class ChemicalReactorRecipe
@@ -59,5 +60,31 @@ public class ChemicalReactorRecipe
 	public ItemStack getResult()
 	{
 		return result;
+	}
+	
+	public CompoundNBT writeToNBT(CompoundNBT compound)
+	{
+		compound.putInt("cookTime", cookTime);
+		compound.put("fluidIngredient1", fluidIngredient1.writeToNBT(new CompoundNBT()));
+		compound.put("fluidIngredient2", fluidIngredient2.writeToNBT(new CompoundNBT()));
+		compound.put("ingredient1", ingredient1.write(new CompoundNBT()));
+		compound.put("ingredient2", ingredient2.write(new CompoundNBT()));
+		compound.put("ingredient3", ingredient3.write(new CompoundNBT()));
+		compound.put("result", result.write(new CompoundNBT()));
+		
+		return compound;
+	}
+	
+	public static ChemicalReactorRecipe readFromNBT(CompoundNBT compound)
+	{
+		int cookTime = compound.getInt("cookTime");
+		FluidStack fluidIngredient1 = FluidStack.loadFluidStackFromNBT(compound.getCompound("fluidIngredient1"));
+		FluidStack fluidIngredient2 = FluidStack.loadFluidStackFromNBT(compound.getCompound("fluidIngredient2"));
+		ItemStack ingredient1 = ItemStack.read(compound.getCompound("ingredient1"));
+		ItemStack ingredient2 = ItemStack.read(compound.getCompound("ingredient2"));
+		ItemStack ingredient3 = ItemStack.read(compound.getCompound("ingredient3"));
+		ItemStack result = ItemStack.read(compound.getCompound("result"));
+		
+		return new ChemicalReactorRecipe(cookTime, fluidIngredient1, fluidIngredient2, ingredient1, ingredient2, ingredient3, result);
 	}
 }
