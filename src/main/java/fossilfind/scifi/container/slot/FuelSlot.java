@@ -1,12 +1,13 @@
-package fossilfind.scifi.inventory.container;
+package fossilfind.scifi.container.slot;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeHooks;
 
-public class ResultSlot extends Slot
+public class FuelSlot extends Slot
 {
-	public ResultSlot(IInventory inventory, int index, int x, int y)
+	public FuelSlot(IInventory inventory, int index, int x, int y)
 	{
 		super(inventory, index, x, y);
 	}
@@ -14,6 +15,6 @@ public class ResultSlot extends Slot
 	@Override
 	public boolean isItemValid(ItemStack stack) 
 	{
-		return false;
+		return ForgeHooks.getBurnTime(stack) > 0;
 	}
 }

@@ -1,7 +1,10 @@
-package fossilfind.scifi.inventory.container;
+package fossilfind.scifi.container;
 
 import java.util.Objects;
 
+import fossilfind.scifi.container.slot.FuelSlot;
+import fossilfind.scifi.container.slot.RefineryInputSlot;
+import fossilfind.scifi.container.slot.ResultSlot;
 import fossilfind.scifi.init.BlockInit;
 import fossilfind.scifi.init.ContainerInit;
 import fossilfind.scifi.tileentity.RefineryTileEntity;
@@ -28,8 +31,8 @@ public class RefineryContainer extends Container
 		this.te = te;
 		canInteractWithCallable = IWorldPosCallable.of(te.getWorld(), te.getPos());
 		
-		addSlot(new Slot(te, 0, 56, 17));
-		addSlot(new FuelSlot(this, te, 1, 56, 53));
+		addSlot(new RefineryInputSlot(te, 0, 56, 17));
+		addSlot(new FuelSlot(te, 1, 56, 53));
 		addSlot(new ResultSlot(te, 2, 116, 24));
 		addSlot(new ResultSlot(te, 3, 116, 46));
 		
@@ -90,16 +93,11 @@ public class RefineryContainer extends Container
 		return itemstack;
 	}
 	
-	public boolean isItemFuel(ItemStack stack)
-	{
-		return te.isItemFuel(stack);
-	}
-	
 	@OnlyIn(Dist.CLIENT)
 	public int getCookProgressionScaled()
 	{
 		int i = te.cookTime;
-		int j = te.cookTimeTotal;
+		int j = te.recipe != null ? te.recipe.getCookTime() : 0;
 		
 		return j != 0 && i != 0 ? i * 24 / j : 0;
 	}

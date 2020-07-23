@@ -4,10 +4,10 @@ import javax.annotation.Nonnull;
 
 import fossilfind.scifi.SciFiMod;
 import fossilfind.scifi.block.ElectrolyzerBlock;
+import fossilfind.scifi.container.ElectrolyzerContainer;
 import fossilfind.scifi.init.FluidInit;
 import fossilfind.scifi.init.ItemInit;
 import fossilfind.scifi.init.TileEntityInit;
-import fossilfind.scifi.inventory.container.ElectrolyzerContainer;
 import fossilfind.scifi.util.IFluidIntake;
 import fossilfind.scifi.util.recipes.ElectrolyzerRecipe;
 import net.minecraft.block.Block;

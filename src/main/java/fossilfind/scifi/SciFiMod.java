@@ -3,9 +3,9 @@ package fossilfind.scifi;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import fossilfind.scifi.client.gui.screen.inventory.ChemicalReactorScreen;
-import fossilfind.scifi.client.gui.screen.inventory.ElectrolyzerScreen;
-import fossilfind.scifi.client.gui.screen.inventory.RefineryScreen;
+import fossilfind.scifi.client.gui.ChemicalReactorScreen;
+import fossilfind.scifi.client.gui.ElectrolyzerScreen;
+import fossilfind.scifi.client.gui.RefineryScreen;
 import fossilfind.scifi.init.BiomeInit;
 import fossilfind.scifi.init.BlockInit;
 import fossilfind.scifi.init.ContainerInit;

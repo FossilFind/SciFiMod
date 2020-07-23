@@ -1,12 +1,12 @@
-package fossilfind.scifi.client.gui.screen.inventory;
+package fossilfind.scifi.client.gui;
 
 import java.util.ArrayList;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import fossilfind.scifi.SciFiMod;
+import fossilfind.scifi.container.ElectrolyzerContainer;
 import fossilfind.scifi.init.FluidInit;
-import fossilfind.scifi.inventory.container.ElectrolyzerContainer;
 import fossilfind.scifi.util.helpers.KeyboardHelper;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;

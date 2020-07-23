@@ -1,7 +1,9 @@
-package fossilfind.scifi.inventory.container;
+package fossilfind.scifi.container;
 
 import java.util.Objects;
 
+import fossilfind.scifi.container.slot.FluidIntakeSlot;
+import fossilfind.scifi.container.slot.ResultSlot;
 import fossilfind.scifi.init.BlockInit;
 import fossilfind.scifi.init.ContainerInit;
 import fossilfind.scifi.tileentity.ChemicalReactorTileEntity;

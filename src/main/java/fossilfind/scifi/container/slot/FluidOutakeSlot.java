@@ -1,4 +1,4 @@
-package fossilfind.scifi.inventory.container;
+package fossilfind.scifi.container.slot;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;

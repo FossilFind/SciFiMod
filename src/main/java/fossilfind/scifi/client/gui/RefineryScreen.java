@@ -1,9 +1,9 @@
-package fossilfind.scifi.client.gui.screen.inventory;
+package fossilfind.scifi.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import fossilfind.scifi.SciFiMod;
-import fossilfind.scifi.inventory.container.RefineryContainer;
+import fossilfind.scifi.container.RefineryContainer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -53,7 +53,7 @@ public class RefineryScreen extends ContainerScreen<RefineryContainer>
 		if(container.isBurning())
 		{
 			int i = container.getBurnLeftScaled();
-			blit(guiLeft + 56, guiTop + 36 + 12 - i, 176, 12 - i, 14, i + 1);
+			blit(guiLeft + 56, guiTop + 37 + 12 - i, 176, 12 - i, 14, i + 1);
 		}
 		
 		blit(guiLeft + 79, guiTop + 34, 176, 14, container.getCookProgressionScaled() + 1, 16);

@@ -1,9 +1,9 @@
 package fossilfind.scifi.init;
 
 import fossilfind.scifi.SciFiMod;
-import fossilfind.scifi.inventory.container.ChemicalReactorContainer;
-import fossilfind.scifi.inventory.container.ElectrolyzerContainer;
-import fossilfind.scifi.inventory.container.RefineryContainer;
+import fossilfind.scifi.container.ChemicalReactorContainer;
+import fossilfind.scifi.container.ElectrolyzerContainer;
+import fossilfind.scifi.container.RefineryContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fml.RegistryObject;

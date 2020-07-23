@@ -4,9 +4,9 @@ import javax.annotation.Nonnull;
 
 import fossilfind.scifi.SciFiMod;
 import fossilfind.scifi.block.ChemicalReactorBlock;
+import fossilfind.scifi.container.ChemicalReactorContainer;
 import fossilfind.scifi.init.ItemInit;
 import fossilfind.scifi.init.TileEntityInit;
-import fossilfind.scifi.inventory.container.ChemicalReactorContainer;
 import fossilfind.scifi.util.IFluidIntake;
 import fossilfind.scifi.util.recipes.ChemicalReactorRecipe;
 import net.minecraft.block.Block;
