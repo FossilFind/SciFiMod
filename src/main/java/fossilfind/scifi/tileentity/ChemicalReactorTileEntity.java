@@ -4,7 +4,6 @@ import javax.annotation.Nonnull;
 
 import fossilfind.scifi.SciFiMod;
 import fossilfind.scifi.block.ChemicalReactorBlock;
-import fossilfind.scifi.init.FluidInit;
 import fossilfind.scifi.init.ItemInit;
 import fossilfind.scifi.init.TileEntityInit;
 import fossilfind.scifi.inventory.container.ChemicalReactorContainer;
@@ -14,7 +13,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BucketItem;
@@ -412,26 +410,6 @@ public class ChemicalReactorTileEntity extends LockableLootTileEntity implements
 		if(stack.getItem() == Items.WATER_BUCKET)
 			return true;
 				
-		return false;
-	}
-	
-	public boolean isIngredient(ItemStack stack)
-	{
-		if(stack.getItem() == Items.QUARTZ)
-			return true;
-		if(stack.getItem() == ItemInit.CAUSTIC_SODA.get())
-			return true;
-		
-		return false;
-	}
-	
-	public boolean isIngredient(FluidStack stack)
-	{
-		if(stack.getFluid() == Fluids.WATER)
-			return true;
-		if(stack.getFluid() == FluidInit.STEAM.get())
-			return true;
-		
 		return false;
 	}
 	

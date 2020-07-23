@@ -8,7 +8,6 @@ import fossilfind.scifi.init.FluidInit;
 import fossilfind.scifi.init.ItemInit;
 import fossilfind.scifi.init.TileEntityInit;
 import fossilfind.scifi.inventory.container.ElectrolyzerContainer;
-import fossilfind.scifi.item.CanisterItem;
 import fossilfind.scifi.util.IFluidIntake;
 import fossilfind.scifi.util.recipes.ElectrolyzerRecipe;
 import net.minecraft.block.Block;
@@ -46,7 +45,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 public class ElectrolyzerTileEntity extends LockableLootTileEntity implements ITickableTileEntity, ISidedInventory, IFluidIntake
 {
 	public FluidTank tank1, tank2, tank3, tank4, tank5;
-	public int cookTime, cookTimeTotal;
+	public int cookTime, tank1Fill;
 	public ElectrolyzerRecipe recipe;
 	
 	private NonNullList<ItemStack> contents = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
@@ -80,52 +79,101 @@ public class ElectrolyzerTileEntity extends LockableLootTileEntity implements IT
 	{
 		if(isIngredientBucket(getStackInSlot(0)))
 		{
-			if(getStackInSlot(0).getItem() instanceof BucketItem)
+			if(tank1Fill >= 10)
 			{
-				tank1.fill(new FluidStack(((BucketItem) getStackInSlot(0).getItem()).getFluid(), 20000), FluidAction.EXECUTE);
-				setInventorySlotContents(0, new ItemStack(Items.BUCKET));
-			}
-			else
-			{
-				tank1.fill(new FluidStack(((CanisterItem) getStackInSlot(0).getItem()).getFluid().get(), 20000), FluidAction.EXECUTE);
-				setInventorySlotContents(0, new ItemStack(ItemInit.CANISTER.get()));
-			}
-		}
-		
-		if(isIngredient(tank1.getFluid()))
-		{
-			if(recipe == null)
-			{
-				recipe = getRecipe(tank1.getFluid());
-				cookTimeTotal = recipe.getCookTime();
-				cookTime = 0;
+				if(getStackInSlot(0).getItem() instanceof BucketItem)
+				{
+					tank1.fill(new FluidStack(((BucketItem) getStackInSlot(0).getItem()).getFluid(), 1000), FluidAction.EXECUTE);
+					setInventorySlotContents(0, new ItemStack(Items.BUCKET));
+				}
+				else
+				{
+					if(getStackInSlot(0).getTag().contains("fluid"))
+					{
+						CompoundNBT nbt = getStackInSlot(0).getTag();
+						
+						FluidStack fluid = FluidStack.loadFluidStackFromNBT(nbt.getCompound("fluid"));
+						
+						if(fluid.getAmount() > 1000)
+						{
+							tank1.fill(new FluidStack(fluid.getFluid(), 1000), FluidAction.EXECUTE);
+							fluid.shrink(1000);
+							nbt.put("fluid", fluid.writeToNBT(new CompoundNBT()));
+						}
+						else
+						{
+							tank1.fill(fluid, FluidAction.EXECUTE);
+							setInventorySlotContents(0, new ItemStack(ItemInit.CANISTER.get()));
+						}
+						
+						getStackInSlot(0).setTag(nbt);
+					}
+				}
+				
+				tank1Fill = 0;
 			}
 			
+			tank1Fill++;
+		}
+		else
+			tank1Fill = 0;
+		
+		recipe = getRecipe(tank1.getFluid());
+		
+		if(recipe != null)
+		{
 			if(canCook())
 			{
-				if(cookTime == cookTimeTotal)
+				if(cookTime == recipe.getCookTime())
 				{
 					tank1.drain(recipe.getIngredient().getAmount(), FluidAction.EXECUTE);
-					tank2.fill(recipe.getResult1(), FluidAction.EXECUTE);
-					tank3.fill(recipe.getResult2(), FluidAction.EXECUTE);
-					tank4.fill(recipe.getResult3(), FluidAction.EXECUTE);
-					tank5.fill(recipe.getResult4(), FluidAction.EXECUTE);
+					tank2.fill(recipe.getFluidResult1(), FluidAction.EXECUTE);
+					tank3.fill(recipe.getFluidResult2(), FluidAction.EXECUTE);
+					tank4.fill(recipe.getFluidResult3(), FluidAction.EXECUTE);
+					tank5.fill(recipe.getFluidResult4(), FluidAction.EXECUTE);
 					
-					if(recipe.getIngredient().getFluid() == FluidInit.SEAWATER.get())
+					if(recipe.getResult1() != ItemStack.EMPTY)
 					{
-						if(getStackInSlot(3).isEmpty())
-							setInventorySlotContents(3, new ItemStack(ItemInit.CAUSTIC_SODA.get(), 0));
-						getStackInSlot(3).grow(1);
+						if(getStackInSlot(1).isEmpty())
+							setInventorySlotContents(1, new ItemStack(recipe.getResult1().getItem(), recipe.getResult1().getCount()));
+						else
+							getStackInSlot(1).grow(recipe.getResult1().getCount());
 					}
 					
-					recipe = null;
+					if(recipe.getResult2() != ItemStack.EMPTY)
+					{
+						if(getStackInSlot(2).isEmpty())
+							setInventorySlotContents(2, new ItemStack(recipe.getResult2().getItem(), recipe.getResult2().getCount()));
+						else
+							getStackInSlot(2).grow(recipe.getResult2().getCount());
+					}
+					
+					if(recipe.getResult3() != ItemStack.EMPTY)
+					{
+						if(getStackInSlot(3).isEmpty())
+							setInventorySlotContents(3, new ItemStack(recipe.getResult3().getItem(), recipe.getResult3().getCount()));
+						else
+							getStackInSlot(3).grow(recipe.getResult3().getCount());
+					}
+					
+					if(recipe.getResult4() != ItemStack.EMPTY)
+					{
+						if(getStackInSlot(4).isEmpty())
+							setInventorySlotContents(4, new ItemStack(recipe.getResult4().getItem(), recipe.getResult4().getCount()));
+						else
+							getStackInSlot(4).grow(recipe.getResult4().getCount());
+					}
+					
 					cookTime = 0;
 				}
-				else cookTime++;
+				else
+					cookTime++;
 			}
-			else cookTime = 0;
+			else
+				cookTime = 0;
 		}
-		else cookTime = 0;
+		else
+			cookTime = 0;
 	}
 	
 	@Override
@@ -162,12 +210,12 @@ public class ElectrolyzerTileEntity extends LockableLootTileEntity implements IT
 	public CompoundNBT write(CompoundNBT compound)
 	{
 		compound.putInt("cookTime", cookTime);
-		compound.putInt("cookTimeTotal", cookTimeTotal);
 		compound.put("tank1", tank1.writeToNBT(new CompoundNBT()));
 		compound.put("tank2", tank2.writeToNBT(new CompoundNBT()));
 		compound.put("tank3", tank3.writeToNBT(new CompoundNBT()));
 		compound.put("tank4", tank4.writeToNBT(new CompoundNBT()));
 		compound.put("tank5", tank5.writeToNBT(new CompoundNBT()));
+		compound.put("recipe", recipe.writeToNBT(new CompoundNBT()));
 		if(!checkLootAndWrite(compound))
 			ItemStackHelper.saveAllItems(compound, contents);
 		return super.write(compound);
@@ -178,12 +226,12 @@ public class ElectrolyzerTileEntity extends LockableLootTileEntity implements IT
 	{
 		super.read(compound);
 		cookTime = compound.getInt("cookTime");
-		cookTimeTotal = compound.getInt("cookTimeTotal");
 		tank1.readFromNBT(compound.getCompound("tank1"));
 		tank2.readFromNBT(compound.getCompound("tank2"));
 		tank3.readFromNBT(compound.getCompound("tank3"));
 		tank4.readFromNBT(compound.getCompound("tank4"));
 		tank5.readFromNBT(compound.getCompound("tank5"));
+		recipe = ElectrolyzerRecipe.readFromNBT(compound.getCompound("recipe"));
 		contents = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
 		if(!checkLootAndRead(compound))
 			ItemStackHelper.loadAllItems(compound, contents);
@@ -325,26 +373,15 @@ public class ElectrolyzerTileEntity extends LockableLootTileEntity implements IT
 	}
 
 	@Override
-	public boolean canInsertItem(int index, ItemStack itemStackIn, Direction direction)
+	public boolean canInsertItem(int index, ItemStack stack, Direction direction)
 	{
-		return false;
+		return index == 0 && isIngredientBucket(stack) && direction == Direction.UP;
 	}
 
 	@Override
 	public boolean canExtractItem(int index, ItemStack stack, Direction direction)
 	{
-		if(direction == Direction.DOWN && (index == 1 || index == 2 || index == 3 || index == 4))
-			return true;
-		return false;
-	}
-	
-	private boolean isIngredient(FluidStack stack)
-	{
-		if(stack.getFluid() == Fluids.WATER)
-			return true;
-		if(stack.getFluid() == FluidInit.SEAWATER.get())
-			return true;
-		return false;
+		return direction == Direction.DOWN && (index == 1 || index == 2 || index == 3 || index == 4);
 	}
 	
 	@Override
@@ -361,31 +398,36 @@ public class ElectrolyzerTileEntity extends LockableLootTileEntity implements IT
 		return false;
 	}
 	
-	private boolean canCook()
-	{
-		boolean isPowered = true;
-		
-		if(isPowered)
-		{
-			return tank1.getCapacity() >= recipe.getIngredient().getAmount() &&
-					(tank2.isEmpty() || (tank2.getFluid().getFluid() == recipe.getResult1().getFluid() && tank2.getCapacity() + recipe.getResult1().getAmount() <= 20000)) &&
-					(tank3.isEmpty() || (tank3.getFluid().getFluid() == recipe.getResult2().getFluid() && tank3.getCapacity() + recipe.getResult2().getAmount() <= 20000)) &&
-					(tank4.isEmpty() || (tank4.getFluid().getFluid() == recipe.getResult3().getFluid() && tank4.getCapacity() + recipe.getResult3().getAmount() <= 20000)) &&
-					(tank5.isEmpty() || (tank5.getFluid().getFluid() == recipe.getResult4().getFluid() && tank5.getCapacity() + recipe.getResult4().getAmount() <= 20000)) &&
-					recipe.getIngredient().getFluid() == FluidInit.SEAWATER.get() ? ((getStackInSlot(3).getItem() == ItemInit.CAUSTIC_SODA.get() && getStackInSlot(3).getCount() <= 63) || getStackInSlot(3).isEmpty()) : true;
-		}
-		
-		return false;
-	}
-	
 	private ElectrolyzerRecipe getRecipe(FluidStack ingredient)
 	{
 		if(ingredient.getFluid() == Fluids.WATER)
-			return new ElectrolyzerRecipe(60, new FluidStack(Fluids.WATER, 1000), new FluidStack(FluidInit.HYDROGEN.get(), 500), new FluidStack(FluidInit.OXYGEN.get(), 250), FluidStack.EMPTY, FluidStack.EMPTY);
+			return ElectrolyzerRecipe.WATER;
 		if(ingredient.getFluid() == FluidInit.SEAWATER.get())
-			return new ElectrolyzerRecipe(60, new FluidStack(FluidInit.SEAWATER.get(), 1000), new FluidStack(FluidInit.HYDROGEN.get(), 500), new FluidStack(FluidInit.CHLORINE.get(), 500), FluidStack.EMPTY, FluidStack.EMPTY);
+			return ElectrolyzerRecipe.SEAWATER;
 		
 		return null;
+	}
+	
+	private boolean canCook()
+	{
+		return roomInTank(2, recipe.getFluidResult1()) && roomInTank(3, recipe.getFluidResult2()) && roomInTank(4, recipe.getFluidResult3()) && roomInTank(5, recipe.getFluidResult4())
+				&& roomInSlot(1, recipe.getResult1()) && roomInSlot(2, recipe.getResult2()) && roomInSlot(3, recipe.getResult3()) && roomInSlot(4, recipe.getResult4());
+	}
+	
+	private boolean roomInTank(int tank, FluidStack stack)
+	{
+		if(stack.isEmpty())
+			return true;
+		else
+			return getTank(tank).isEmpty() || (getTank(tank).getFluid().getFluid() == stack.getFluid() && getTank(tank).getFluidAmount() <= stack.getAmount() + getTank(tank).getFluidAmount());
+	}
+	
+	private boolean roomInSlot(int slot, ItemStack stack)
+	{
+		if(stack.isEmpty())
+			return true;
+		else
+			return getStackInSlot(slot).isEmpty() || (getStackInSlot(slot).getItem() == stack.getItem() && getStackInSlot(slot).getCount() <= stack.getCount() + getStackInSlot(slot).getCount());
 	}
 	
 	public FluidTank getTank(int index)

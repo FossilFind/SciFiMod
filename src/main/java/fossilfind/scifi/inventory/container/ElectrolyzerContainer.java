@@ -77,7 +77,7 @@ public class ElectrolyzerContainer extends Container
 	public int getCookProgressionScaled()
 	{
 		int i = te.cookTime;
-		int j = te.cookTimeTotal;
+		int j = te.recipe != null ? te.recipe.getCookTime() : 0;
 		
 		return i != 0 && j != 0 ? i * 125 / j : 0;
 	}

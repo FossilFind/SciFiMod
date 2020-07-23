@@ -7,6 +7,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import fossilfind.scifi.SciFiMod;
 import fossilfind.scifi.init.FluidInit;
 import fossilfind.scifi.inventory.container.ElectrolyzerContainer;
+import fossilfind.scifi.util.helpers.KeyboardHelper;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
@@ -71,24 +72,39 @@ public class ElectrolyzerScreen extends ContainerScreen<ElectrolyzerContainer>
 		FluidStack tank5 = container.getTank(5).getFluid();
 		
 		ArrayList<String> tank1Text = new ArrayList<String>();
-		tank1Text.add(tank1.getFluid() == Fluids.WATER ? "Water" : tank1.getFluid() == FluidInit.SEAWATER.get() ? "Seawater" : "Empty");
-		tank1Text.add(tank1.getAmount() + " / 20000 mB");
+		tank1Text.add(tank1.getFluid() == Fluids.EMPTY ? "Empty" : tank1.getDisplayName().getFormattedText());
+		if(KeyboardHelper.isHoldingShift())
+			tank1Text.add(tank1.getAmount() + " / 20000mB");
+		else
+			tank1Text.add(tank1.getAmount() / 1000 + " / 20B");
 		
 		ArrayList<String> tank2Text = new ArrayList<String>();
-		tank2Text.add(tank2.getFluid() == FluidInit.HYDROGEN.get() ? "Hydrogen" : "Empty");
-		tank2Text.add(tank2.getAmount() + " / 20000 mB");
+		tank2Text.add(tank2.getFluid() == Fluids.EMPTY ? "Empty" : tank2.getDisplayName().getFormattedText());
+		if(KeyboardHelper.isHoldingShift())
+			tank2Text.add(tank2.getAmount() + " / 20000mB");
+		else
+			tank2Text.add(tank2.getAmount() / 1000 + " / 20B");
 		
 		ArrayList<String> tank3Text = new ArrayList<String>();
-		tank3Text.add(tank3.getFluid() == FluidInit.OXYGEN.get() ? "Oxygen" : tank3.getFluid() == FluidInit.CHLORINE.get() ? "Chlorine" : "Empty");
-		tank3Text.add(tank3.getAmount() + " / 20000 mB");
+		tank3Text.add(tank3.getFluid() == Fluids.EMPTY ? "Empty" : tank3.getDisplayName().getFormattedText());
+		if(KeyboardHelper.isHoldingShift())
+			tank3Text.add(tank3.getAmount() + " / 20000mB");
+		else
+			tank3Text.add(tank3.getAmount() / 1000 + " / 20B");
 		
 		ArrayList<String> tank4Text = new ArrayList<String>();
-		tank4Text.add("Empty");
-		tank4Text.add(tank4.getAmount() + " / 20000 mB");
+		tank4Text.add(tank4.getFluid() == Fluids.EMPTY ? "Empty" : tank4.getDisplayName().getFormattedText());
+		if(KeyboardHelper.isHoldingShift())
+			tank4Text.add(tank4.getAmount() + " / 20000mB");
+		else
+			tank4Text.add(tank4.getAmount() / 1000 + " / 20B");
 		
 		ArrayList<String> tank5Text = new ArrayList<String>();
-		tank5Text.add("Empty");
-		tank5Text.add(tank5.getAmount() + " / 20000 mB");
+		tank5Text.add(tank5.getFluid() == Fluids.EMPTY ? "Empty" : tank5.getDisplayName().getFormattedText());
+		if(KeyboardHelper.isHoldingShift())
+			tank5Text.add(tank5.getAmount() + " / 20000mB");
+		else
+			tank5Text.add(tank5.getAmount() / 1000 + " / 20B");
 		
 		if(isMouseInBounds(guiLeft + 8, guiTop + 38, 16, 32, mouseX, mouseY)) renderTooltip(tank1Text, mouseX - guiLeft, mouseY - guiTop);
 		if(isMouseInBounds(guiLeft + 44, guiTop + 38, 16, 32, mouseX, mouseY)) renderTooltip(tank2Text, mouseX - guiLeft, mouseY - guiTop);
