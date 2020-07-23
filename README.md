@@ -1,5 +1,5 @@
 # SciFiMod
-A science fiction Minecraft mod that has relativly accurate science.
+A science-fiction Minecraft mod that has relatively accurate science.
 
 ## Credits
 FossilFind: Programmer
