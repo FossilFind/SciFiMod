@@ -2,11 +2,11 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "scifi:aluminum_block"
+			"item": "scifi:salt_block"
 		}
 	],
 	"result": {
 		"count": 9,
-		"item": "scifi:aluminum_ingot"
+		"item": "scifi:salt"
 	}
 }

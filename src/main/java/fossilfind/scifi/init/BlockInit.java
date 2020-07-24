@@ -23,6 +23,7 @@ public class BlockInit
 	public static final RegistryObject<Block> BAUXITE = BLOCKS.register("bauxite", () -> new Block(Block.Properties.from(Blocks.IRON_ORE)));
 	public static final RegistryObject<Block> TANTINITE = BLOCKS.register("tantinite", () -> new Block(Block.Properties.from(Blocks.IRON_ORE)));
 	public static final RegistryObject<Block> RUTILE = BLOCKS.register("rutile", () -> new Block(Block.Properties.from(Blocks.IRON_ORE)));
+	public static final RegistryObject<Block> SALT_BLOCK = BLOCKS.register("salt_block", () -> new Block(Block.Properties.from(Blocks.GRAVEL)));
 	public static final RegistryObject<Block> ALUMINUM_FRAME = BLOCKS.register("aluminum_frame", () -> new Block(Block.Properties.from(Blocks.IRON_BLOCK).notSolid()));
 	public static final RegistryObject<Block> IRON_FRAME = BLOCKS.register("iron_frame", () -> new Block(Block.Properties.from(ALUMINUM_FRAME.get())));
 	public static final RegistryObject<Block> TITANIUM_FRAME = BLOCKS.register("titanium_frame", () -> new Block(Block.Properties.from(ALUMINUM_FRAME.get())));

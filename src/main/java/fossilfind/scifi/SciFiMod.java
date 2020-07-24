@@ -11,9 +11,11 @@ import fossilfind.scifi.init.BiomeInit;
 import fossilfind.scifi.init.BlockInit;
 import fossilfind.scifi.init.ContainerInit;
 import fossilfind.scifi.init.DimensionInit;
+import fossilfind.scifi.init.FeatureInit;
 import fossilfind.scifi.init.FluidInit;
 import fossilfind.scifi.init.ItemInit;
 import fossilfind.scifi.init.TileEntityInit;
+import fossilfind.scifi.world.gen.SciFiFeatureGeneration;
 import fossilfind.scifi.world.gen.SciFiOreGeneration;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.BlockItem;
@@ -54,6 +56,7 @@ public class SciFiMod
 		ContainerInit.CONTAINERS.register(bus);
 		FluidInit.BLOCKS.register(bus);
 		FluidInit.FLUIDS.register(bus);
+		FeatureInit.FEATURES.register(bus);
 		BiomeInit.BIOMES.register(bus);
 		DimensionInit.DIMENSIONS.register(bus);
 		
@@ -75,6 +78,7 @@ public class SciFiMod
 	public void loadComplete(FMLLoadCompleteEvent event)
 	{
 		SciFiOreGeneration.generateOres();
+		SciFiFeatureGeneration.generateFeatures();
 	}
 	
 	@SubscribeEvent

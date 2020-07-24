@@ -22,6 +22,7 @@ public class ItemInit
 	public static final RegistryObject<Item> TANTALUM_CARBIDE_INGOT = ITEMS.register("tantalum_carbide_ingot", () -> new Item(new Item.Properties().group(SciFiItemGroup.instance)));
 	public static final RegistryObject<Item> TANTALUM_INGOT = ITEMS.register("tantalum_ingot", () -> new Item(new Item.Properties().group(SciFiItemGroup.instance)));
 	public static final RegistryObject<Item> GRAPHITE = ITEMS.register("graphite", () -> new Item(new Item.Properties().group(SciFiItemGroup.instance)));
+	public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item(new Item.Properties().group(SciFiItemGroup.instance)));
 	public static final RegistryObject<Item> SILICA_FIBER = ITEMS.register("silica_fiber", () -> new Item(new Item.Properties().group(SciFiItemGroup.instance)));
 	public static final RegistryObject<Item> WATER_GLASS = ITEMS.register("water_glass", () -> new WaterGlassItem(new Item.Properties().group(SciFiItemGroup.instance)));
 	public static final RegistryObject<Item> CAUSTIC_SODA = ITEMS.register("caustic_soda", () -> new CausticSodaItem(new Item.Properties().group(SciFiItemGroup.instance)));
