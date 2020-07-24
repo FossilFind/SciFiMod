@@ -2,7 +2,9 @@ package fossilfind.scifi.util.recipes;
 
 import fossilfind.scifi.init.FluidInit;
 import fossilfind.scifi.init.ItemInit;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -86,5 +88,43 @@ public class ChemicalReactorRecipe
 		ItemStack result = ItemStack.read(compound.getCompound("result"));
 		
 		return new ChemicalReactorRecipe(cookTime, fluidIngredient1, fluidIngredient2, ingredient1, ingredient2, ingredient3, result);
+	}
+	
+	public static ChemicalReactorRecipe getRecipe(FluidStack fluid1, FluidStack fluid2, ItemStack item1, ItemStack item2, ItemStack item3)
+	{
+		if(hasFluidInTanks(ChemicalReactorRecipe.SILICA_FIBER.getFluidIngredient1().getFluid(), fluid1, fluid2)
+				&& hasFluidInTanks(ChemicalReactorRecipe.SILICA_FIBER.getFluidIngredient2().getFluid(), fluid1, fluid2)
+				&& hasItemInSlots(ChemicalReactorRecipe.SILICA_FIBER.getIngredient1().getItem(), item1, item2, item3) 
+				&& hasItemInSlots(ChemicalReactorRecipe.SILICA_FIBER.getIngredient2().getItem(), item1, item2, item3) 
+				&& hasItemInSlots(ChemicalReactorRecipe.SILICA_FIBER.getIngredient3().getItem(), item1, item2, item3) 
+				&& fluid1.getAmount() >= 1000 && fluid2.getAmount() >= 1000)
+			return ChemicalReactorRecipe.SILICA_FIBER;
+		
+		return null;
+	}
+	
+	private static boolean hasFluidInTanks(Fluid fluid, FluidStack... stacks)
+	{
+		for(FluidStack stack : stacks)
+		{
+			if(stack.getFluid() == fluid)
+				return true;
+		}
+		
+		return false;
+	}
+	
+	private static boolean hasItemInSlots(Item item, ItemStack... stacks)
+	{
+		if(item == ItemStack.EMPTY.getItem())
+			return true;
+		
+		for(ItemStack stack : stacks)
+		{
+			if(stack.getItem() == item)
+				return true;
+		}
+		
+		return false;
 	}
 }

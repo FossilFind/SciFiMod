@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import fossilfind.scifi.client.gui.ChemicalReactorScreen;
 import fossilfind.scifi.client.gui.ElectrolyzerScreen;
+import fossilfind.scifi.client.gui.FluidCompressorScreen;
 import fossilfind.scifi.client.gui.RefineryScreen;
 import fossilfind.scifi.init.BiomeInit;
 import fossilfind.scifi.init.BlockInit;
@@ -68,6 +69,7 @@ public class SciFiMod
 		ScreenManager.registerFactory(ContainerInit.REFINERY.get(), RefineryScreen::new);
     	ScreenManager.registerFactory(ContainerInit.ELECTROLYZER.get(), ElectrolyzerScreen::new);
     	ScreenManager.registerFactory(ContainerInit.CHEMICAL_REACTOR.get(), ChemicalReactorScreen::new);
+    	ScreenManager.registerFactory(ContainerInit.FLUID_COMPRESSOR.get(), FluidCompressorScreen::new);
 	}
 	
 	public void loadComplete(FMLLoadCompleteEvent event)

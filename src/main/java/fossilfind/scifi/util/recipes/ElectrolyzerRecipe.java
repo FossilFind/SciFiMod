@@ -95,10 +95,15 @@ public class ElectrolyzerRecipe
 	{
 		FluidStack stack = FluidStack.loadFluidStackFromNBT(compound.getCompound("ingredient"));
 		
-		if(stack.getFluid() == Fluids.WATER)
-			return WATER;
-		if(stack.getFluid() == FluidInit.SEAWATER.get())
-			return SEAWATER;
+		return getRecipe(stack);
+	}
+	
+	public static ElectrolyzerRecipe getRecipe(FluidStack ingredient)
+	{
+		if(ingredient.getFluid() == Fluids.WATER)
+			return ElectrolyzerRecipe.WATER;
+		if(ingredient.getFluid() == FluidInit.SEAWATER.get())
+			return ElectrolyzerRecipe.SEAWATER;
 		
 		return null;
 	}

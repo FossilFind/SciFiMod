@@ -33,10 +33,12 @@
 	"block.scifi.refinery": "\u00A7bRefinery",
 	"block.scifi.electrolyzer": "\u00A7bElectrolyzer",
 	"block.scifi.chemical_reactor": "\u00A7bChemical Reactor",
+	"block.scifi.fluid_compressor": "\u00A7bFluid Compressor",
 	
 	"container.scifi.refinery": "Refinery",
 	"container.scifi.electrolyzer": "Electrolyzer",
 	"container.scifi.chemical_reactor": "Chemical Reactor",
+	"container.scifi.fluid_compressor": "Fluid Compressor",
 	
 	"itemGroup.scifi_tab": "SciFiMod",
 	

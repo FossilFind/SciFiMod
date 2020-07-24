@@ -5,7 +5,6 @@ import javax.annotation.Nonnull;
 import fossilfind.scifi.SciFiMod;
 import fossilfind.scifi.block.ElectrolyzerBlock;
 import fossilfind.scifi.container.ElectrolyzerContainer;
-import fossilfind.scifi.init.FluidInit;
 import fossilfind.scifi.init.ItemInit;
 import fossilfind.scifi.init.TileEntityInit;
 import fossilfind.scifi.util.IFluidIntake;
@@ -13,7 +12,6 @@ import fossilfind.scifi.util.recipes.ElectrolyzerRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
@@ -118,7 +116,7 @@ public class ElectrolyzerTileEntity extends LockableLootTileEntity implements IT
 		else
 			tank1Fill = 0;
 		
-		recipe = getRecipe(tank1.getFluid());
+		recipe = ElectrolyzerRecipe.getRecipe(tank1.getFluid());
 		
 		if(recipe != null)
 		{
@@ -396,16 +394,6 @@ public class ElectrolyzerTileEntity extends LockableLootTileEntity implements IT
 		if(stack.getItem() == ItemInit.WATER_CANISTER.get())
 			return true;
 		return false;
-	}
-	
-	private ElectrolyzerRecipe getRecipe(FluidStack ingredient)
-	{
-		if(ingredient.getFluid() == Fluids.WATER)
-			return ElectrolyzerRecipe.WATER;
-		if(ingredient.getFluid() == FluidInit.SEAWATER.get())
-			return ElectrolyzerRecipe.SEAWATER;
-		
-		return null;
 	}
 	
 	private boolean canCook()

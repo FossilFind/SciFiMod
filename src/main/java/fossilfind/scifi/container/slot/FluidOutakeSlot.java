@@ -1,5 +1,6 @@
 package fossilfind.scifi.container.slot;
 
+import fossilfind.scifi.init.ItemInit;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,6 @@ public class FluidOutakeSlot extends Slot
 	@Override
 	public boolean isItemValid(ItemStack stack)
 	{
-		return stack.getItem() == Items.BUCKET;
+		return stack.getItem() == Items.BUCKET || stack.getItem() == ItemInit.CANISTER.get();
 	}
 }

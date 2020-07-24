@@ -12,11 +12,9 @@ import fossilfind.scifi.util.recipes.ChemicalReactorRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BucketItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -149,7 +147,7 @@ public class ChemicalReactorTileEntity extends LockableLootTileEntity implements
 		else
 			tank2Fill = 0;
 		
-		recipe = getRecipe(tank1.getFluid(), tank2.getFluid(), getStackInSlot(2), getStackInSlot(3), getStackInSlot(4));
+		recipe = ChemicalReactorRecipe.getRecipe(tank1.getFluid(), tank2.getFluid(), getStackInSlot(2), getStackInSlot(3), getStackInSlot(4));
 		
 		if(recipe != null)
 		{
@@ -410,44 +408,6 @@ public class ChemicalReactorTileEntity extends LockableLootTileEntity implements
 		if(stack.getItem() == Items.WATER_BUCKET)
 			return true;
 				
-		return false;
-	}
-	
-	public ChemicalReactorRecipe getRecipe(FluidStack fluid1, FluidStack fluid2, ItemStack item1, ItemStack item2, ItemStack item3)
-	{
-		if(hasFluidInTanks(ChemicalReactorRecipe.SILICA_FIBER.getFluidIngredient1().getFluid(), fluid1, fluid2)
-				&& hasFluidInTanks(ChemicalReactorRecipe.SILICA_FIBER.getFluidIngredient2().getFluid(), fluid1, fluid2)
-				&& hasItemInSlots(ChemicalReactorRecipe.SILICA_FIBER.getIngredient1().getItem(), item1, item2, item3) 
-				&& hasItemInSlots(ChemicalReactorRecipe.SILICA_FIBER.getIngredient2().getItem(), item1, item2, item3) 
-				&& hasItemInSlots(ChemicalReactorRecipe.SILICA_FIBER.getIngredient3().getItem(), item1, item2, item3) 
-				&& fluid1.getAmount() >= 1000 && fluid2.getAmount() >= 1000)
-			return ChemicalReactorRecipe.SILICA_FIBER;
-		
-		return null;
-	}
-	
-	private boolean hasFluidInTanks(Fluid fluid, FluidStack... stacks)
-	{
-		for(FluidStack stack : stacks)
-		{
-			if(stack.getFluid() == fluid)
-				return true;
-		}
-		
-		return false;
-	}
-	
-	private boolean hasItemInSlots(Item item, ItemStack... stacks)
-	{
-		if(item == ItemStack.EMPTY.getItem())
-			return true;
-		
-		for(ItemStack stack : stacks)
-		{
-			if(stack.getItem() == item)
-				return true;
-		}
-		
 		return false;
 	}
 	

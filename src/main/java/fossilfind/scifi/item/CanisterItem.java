@@ -29,16 +29,7 @@ public class CanisterItem extends Item
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
 	{
-		CompoundNBT nbt;
-		
-		if(stack.hasTag())
-		{
-			nbt = stack.getTag();
-		}
-		else
-		{
-			nbt = new CompoundNBT();
-		}
+		CompoundNBT nbt = stack.getOrCreateTag();
 		
 		if(nbt.contains("fluid"))
 		{
