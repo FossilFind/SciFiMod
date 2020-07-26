@@ -1,8 +1,11 @@
-package fossilfind.scifi.init;
+package fossilfind.scifi.tileentity;
 
 import fossilfind.scifi.SciFiMod;
 import fossilfind.scifi.block.FluidCompressorBlock;
 import fossilfind.scifi.container.FluidCompressorContainer;
+import fossilfind.scifi.init.FluidInit;
+import fossilfind.scifi.init.ItemInit;
+import fossilfind.scifi.init.TileEntityInit;
 import fossilfind.scifi.item.CanisterItem;
 import fossilfind.scifi.util.IFluidIntake;
 import net.minecraft.block.Block;

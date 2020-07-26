@@ -3,7 +3,9 @@ package fossilfind.scifi.init;
 import fossilfind.scifi.SciFiMod;
 import fossilfind.scifi.tileentity.ChemicalReactorTileEntity;
 import fossilfind.scifi.tileentity.ElectrolyzerTileEntity;
+import fossilfind.scifi.tileentity.FluidCompressorTileEntity;
 import fossilfind.scifi.tileentity.RefineryTileEntity;
+import fossilfind.scifi.tileentity.VehicleConstructorTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,4 +19,5 @@ public class TileEntityInit
 	public static final RegistryObject<TileEntityType<ElectrolyzerTileEntity>> ELECTROLYZER = TILE_ENTITIES.register("electrolyzer", () -> TileEntityType.Builder.create(ElectrolyzerTileEntity::new, BlockInit.ELECTROLYZER.get()).build(null));
 	public static final RegistryObject<TileEntityType<ChemicalReactorTileEntity>> CHEMICAL_REACTOR = TILE_ENTITIES.register("chemical_reactor", () -> TileEntityType.Builder.create(ChemicalReactorTileEntity::new, BlockInit.CHEMICAL_REACTOR.get()).build(null));
 	public static final RegistryObject<TileEntityType<FluidCompressorTileEntity>> FLUID_COMPRESSOR = TILE_ENTITIES.register("fluid_compressor", () -> TileEntityType.Builder.create(FluidCompressorTileEntity::new, BlockInit.FLUID_COMPRESSOR.get()).build(null));
+	public static final RegistryObject<TileEntityType<VehicleConstructorTileEntity>> VEHICLE_CONSTRUCTOR = TILE_ENTITIES.register("vehicle_constructor", () -> TileEntityType.Builder.create(VehicleConstructorTileEntity::new, BlockInit.VEHICLE_CONSTRUCTOR.get()).build(null));
 }

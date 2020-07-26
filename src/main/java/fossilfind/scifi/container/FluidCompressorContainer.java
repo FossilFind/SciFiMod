@@ -6,7 +6,7 @@ import fossilfind.scifi.container.slot.FluidIntakeSlot;
 import fossilfind.scifi.container.slot.FluidOutakeSlot;
 import fossilfind.scifi.init.BlockInit;
 import fossilfind.scifi.init.ContainerInit;
-import fossilfind.scifi.init.FluidCompressorTileEntity;
+import fossilfind.scifi.tileentity.FluidCompressorTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

@@ -1,31 +1,24 @@
 package fossilfind.scifi.block;
 
-import java.util.List;
-
 import fossilfind.scifi.init.TileEntityInit;
-import fossilfind.scifi.tileentity.FluidCompressorTileEntity;
-import fossilfind.scifi.util.helpers.KeyboardHelper;
+import fossilfind.scifi.tileentity.VehicleConstructorTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class FluidCompressorBlock extends Block
+public class VehicleConstructorBlock extends Block
 {
-	public FluidCompressorBlock(Properties properties)
+	public VehicleConstructorBlock(Properties properties)
 	{
 		super(properties);
 	}
@@ -39,7 +32,7 @@ public class FluidCompressorBlock extends Block
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world)
 	{
-		return TileEntityInit.FLUID_COMPRESSOR.get().create();
+		return TileEntityInit.VEHICLE_CONSTRUCTOR.get().create();
 	}
 	
 	@Override
@@ -49,9 +42,9 @@ public class FluidCompressorBlock extends Block
 		{
 			TileEntity te = worldIn.getTileEntity(pos);
 			
-			if(te instanceof FluidCompressorTileEntity)
+			if(te instanceof VehicleConstructorTileEntity)
 			{
-				NetworkHooks.openGui((ServerPlayerEntity) player, (FluidCompressorTileEntity) te, pos);
+				NetworkHooks.openGui((ServerPlayerEntity) player, (VehicleConstructorTileEntity) te, pos);
 				return ActionResultType.SUCCESS;
 			}
 		}
@@ -62,25 +55,12 @@ public class FluidCompressorBlock extends Block
 	@Override
 	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
 	{
-		if(state.getBlock() != newState.getBlock())
+		if(!worldIn.isRemote)
 		{
 			TileEntity te = worldIn.getTileEntity(pos);
 			
-			if(te instanceof FluidCompressorTileEntity) InventoryHelper.dropItems(worldIn, pos, ((FluidCompressorTileEntity) te).getItems());
-		}
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
-	{
-		if(KeyboardHelper.isHoldingShift())
-		{
-			tooltip.add(new StringTextComponent("\u00A7aCompresses fluids into and"));
-			tooltip.add(new StringTextComponent("\u00A7aout of canisters"));
-		}
-		else
-		{
-			tooltip.add(new StringTextComponent("\u00A75Hold SHIFT"));
+			if(te instanceof VehicleConstructorTileEntity)
+				InventoryHelper.dropItems(worldIn, pos, ((VehicleConstructorTileEntity) te).getItems());
 		}
 	}
 }

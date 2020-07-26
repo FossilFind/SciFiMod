@@ -36,6 +36,7 @@
 	"block.scifi.electrolyzer": "\u00A7bElectrolyzer",
 	"block.scifi.chemical_reactor": "\u00A7bChemical Reactor",
 	"block.scifi.fluid_compressor": "\u00A7bFluid Compressor",
+	"block.scifi.vehicle_constructor": "\u00A7bVehicle Constructor",
 	
 	"container.scifi.refinery": "Refinery",
 	"container.scifi.electrolyzer": "Electrolyzer",

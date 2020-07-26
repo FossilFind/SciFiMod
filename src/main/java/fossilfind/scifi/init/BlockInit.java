@@ -5,6 +5,7 @@ import fossilfind.scifi.block.ChemicalReactorBlock;
 import fossilfind.scifi.block.ElectrolyzerBlock;
 import fossilfind.scifi.block.FluidCompressorBlock;
 import fossilfind.scifi.block.RefineryBlock;
+import fossilfind.scifi.block.VehicleConstructorBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
@@ -34,4 +35,5 @@ public class BlockInit
 	public static final RegistryObject<Block> ELECTROLYZER = BLOCKS.register("electrolyzer", () -> new ElectrolyzerBlock(Block.Properties.from(REFINERY.get())));
 	public static final RegistryObject<Block> CHEMICAL_REACTOR = BLOCKS.register("chemical_reactor", () -> new ChemicalReactorBlock(Block.Properties.from(REFINERY.get())));
 	public static final RegistryObject<Block> FLUID_COMPRESSOR = BLOCKS.register("fluid_compressor", () -> new FluidCompressorBlock(Block.Properties.from(REFINERY.get())));
+	public static final RegistryObject<Block> VEHICLE_CONSTRUCTOR = BLOCKS.register("vehicle_constructor", () -> new VehicleConstructorBlock(Block.Properties.from(REFINERY.get())));
 }
