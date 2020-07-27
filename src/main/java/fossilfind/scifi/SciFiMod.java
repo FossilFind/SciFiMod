@@ -8,10 +8,12 @@ import fossilfind.scifi.client.gui.ElectrolyzerScreen;
 import fossilfind.scifi.client.gui.FluidCompressorScreen;
 import fossilfind.scifi.client.gui.RefineryScreen;
 import fossilfind.scifi.client.gui.VehicleConstructorScreen;
+import fossilfind.scifi.client.renderer.entity.RocketEntityRender;
 import fossilfind.scifi.init.BiomeInit;
 import fossilfind.scifi.init.BlockInit;
 import fossilfind.scifi.init.ContainerInit;
 import fossilfind.scifi.init.DimensionInit;
+import fossilfind.scifi.init.EntityInit;
 import fossilfind.scifi.init.FeatureInit;
 import fossilfind.scifi.init.FluidInit;
 import fossilfind.scifi.init.ItemInit;
@@ -30,6 +32,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -55,10 +58,11 @@ public class SciFiMod
 		BlockInit.BLOCKS.register(bus);
 		TileEntityInit.TILE_ENTITIES.register(bus);
 		ContainerInit.CONTAINERS.register(bus);
+		EntityInit.ENTITIES.register(bus);
 		FluidInit.BLOCKS.register(bus);
 		FluidInit.FLUIDS.register(bus);
-		FeatureInit.FEATURES.register(bus);
 		BiomeInit.BIOMES.register(bus);
+		FeatureInit.FEATURES.register(bus);
 		DimensionInit.DIMENSIONS.register(bus);
 		
 		bus.addListener(this::clientSetup);
@@ -75,6 +79,8 @@ public class SciFiMod
     	ScreenManager.registerFactory(ContainerInit.CHEMICAL_REACTOR.get(), ChemicalReactorScreen::new);
     	ScreenManager.registerFactory(ContainerInit.FLUID_COMPRESSOR.get(), FluidCompressorScreen::new);
     	ScreenManager.registerFactory(ContainerInit.VEHICLE_CONSTRUCTOR.get(), VehicleConstructorScreen::new);
+    	
+    	RenderingRegistry.registerEntityRenderingHandler(EntityInit.ROCKET.get(), RocketEntityRender::new);
 	}
 	
 	public void loadComplete(FMLLoadCompleteEvent event)
