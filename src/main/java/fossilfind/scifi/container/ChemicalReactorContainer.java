@@ -3,7 +3,6 @@ package fossilfind.scifi.container;
 import java.util.Objects;
 
 import fossilfind.scifi.container.slot.FluidIntakeSlot;
-import fossilfind.scifi.container.slot.ResultSlot;
 import fossilfind.scifi.init.BlockInit;
 import fossilfind.scifi.init.ContainerInit;
 import fossilfind.scifi.tileentity.ChemicalReactorTileEntity;
@@ -35,9 +34,9 @@ public class ChemicalReactorContainer extends Container
 		addSlot(new Slot(te, 2, 107, 17));
 		addSlot(new Slot(te, 3, 107, 35));
 		addSlot(new Slot(te, 4, 107, 53));
-		addSlot(new ResultSlot(te, 5, 143, 17));
-		addSlot(new ResultSlot(te, 6, 143, 35));
-		addSlot(new ResultSlot(te, 7, 143, 53));
+//		addSlot(new ResultSlot(te, 5, 143, 17));
+//		addSlot(new ResultSlot(te, 6, 143, 35));
+//		addSlot(new ResultSlot(te, 7, 143, 53));
 		
 		for(int row = 0; row < 3; row++)
 		{

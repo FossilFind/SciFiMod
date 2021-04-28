@@ -17,6 +17,7 @@ import fossilfind.scifi.init.EntityInit;
 import fossilfind.scifi.init.FeatureInit;
 import fossilfind.scifi.init.FluidInit;
 import fossilfind.scifi.init.ItemInit;
+import fossilfind.scifi.init.RecipeInit;
 import fossilfind.scifi.init.TileEntityInit;
 import fossilfind.scifi.world.gen.SciFiFeatureGeneration;
 import fossilfind.scifi.world.gen.SciFiOreGeneration;
@@ -55,6 +56,7 @@ public class SciFiMod
 		
 		
 		ItemInit.ITEMS.register(bus);
+		RecipeInit.RECIPE_SERIALIZERS.register(bus);
 		BlockInit.BLOCKS.register(bus);
 		TileEntityInit.TILE_ENTITIES.register(bus);
 		ContainerInit.CONTAINERS.register(bus);

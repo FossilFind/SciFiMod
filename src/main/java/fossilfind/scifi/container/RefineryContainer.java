@@ -50,6 +50,11 @@ public class RefineryContainer extends Container
 		}
 	}
 	
+	public RefineryContainer(final int id, final PlayerInventory inventory, final PacketBuffer data)
+	{
+		this(id, inventory, getTileEntity(inventory, data));
+	}
+	
 	private static RefineryTileEntity getTileEntity(final PlayerInventory inventory, final PacketBuffer data)
 	{
 		Objects.requireNonNull(inventory, "PlayerInventory can not be null");
@@ -57,14 +62,10 @@ public class RefineryContainer extends Container
 		
 		final TileEntity te = inventory.player.world.getTileEntity(data.readBlockPos());
 		
-		if(te instanceof RefineryTileEntity) return (RefineryTileEntity) te;
+		if(te instanceof RefineryTileEntity)
+			return (RefineryTileEntity) te;
 		
 		throw new IllegalStateException(te + " is not the correct TileEntity");
-	}
-	
-	public RefineryContainer(final int id, final PlayerInventory inventory, final PacketBuffer data)
-	{
-		this(id, inventory, getTileEntity(inventory, data));
 	}
 	
 	@Override
@@ -83,8 +84,8 @@ public class RefineryContainer extends Container
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 			
-			if(index < 27 && !mergeItemStack(itemstack1, 36, inventorySlots.size(), true)) return ItemStack.EMPTY;
-			else if(!mergeItemStack(itemstack1, 0, 36, false)) return ItemStack.EMPTY;
+			if(index < 4 && !mergeItemStack(itemstack1, 4, inventorySlots.size(), true)) return ItemStack.EMPTY;
+			else if(!mergeItemStack(itemstack1, 0, 4, false)) return ItemStack.EMPTY;
 			
 			if(itemstack1.isEmpty()) slot.putStack(ItemStack.EMPTY);
 			else slot.onSlotChanged();
@@ -97,7 +98,9 @@ public class RefineryContainer extends Container
 	public int getCookProgressionScaled()
 	{
 		int i = te.cookTime;
-		int j = te.recipe != null ? te.recipe.getCookTime() : 0;
+		int j = te.cookTimeTotal;
+		
+		//System.out.println("getCookProgressionScaled(): " + (j != 0 && i != 0 ? i * 24 / j : 0));
 		
 		return j != 0 && i != 0 ? i * 24 / j : 0;
 	}
