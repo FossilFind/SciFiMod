@@ -1,16 +1,16 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
-		"T T",
 		"TTT",
-		"T T"
+		"TTT",
+		"TTT"
 	],
 	"key": {
 		"T": {
-			"item": "scifi:tantulum_ingot"
+			"item": "scifi:tantalum_carbide_ingot"
 		}
 	},
 	"result": {
-		"item": "scifi:tantulum_frame"
+		"item": "scifi:tantalum_carbide_block"
 	}
 }

@@ -7,10 +7,10 @@
 	],
 	"key": {
 		"T": {
-			"item": "scifi:tantulum_carbide_ingot"
+			"item": "scifi:tantalum_ingot"
 		}
 	},
 	"result": {
-		"item": "scifi:tantulum_carbide_frame"
+		"item": "scifi:tantalum_frame"
 	}
 }

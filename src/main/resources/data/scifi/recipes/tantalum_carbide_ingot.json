@@ -2,11 +2,11 @@
 	"type": "minecraft:crafting_shapeless",
 	"ingredients": [
 		{
-			"item": "scifi:tantulum_carbide_block"
+			"item": "scifi:tantalum_carbide_block"
 		}
 	],
 	"result": {
 		"count": 9,
-		"item": "scifi:tantulum_carbide_ingot"
+		"item": "scifi:tantalum_carbide_ingot"
 	}
 }

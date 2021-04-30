@@ -7,10 +7,10 @@
 	],
 	"key": {
 		"T": {
-			"item": "scifi:tantulum_ingot"
+			"item": "scifi:tantalum_ingot"
 		}
 	},
 	"result": {
-		"item": "scifi:tantulum_block"
+		"item": "scifi:tantalum_block"
 	}
 }
