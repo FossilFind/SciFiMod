@@ -1,0 +1,6 @@
+{
+	"type": "scifi:refining",
+	"ingredient": "scifi:bauxite",
+	"result": "scifi:aluminum_ingot",
+	"cookingtime": 200
+}

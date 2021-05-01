@@ -1,0 +1,6 @@
+{
+	"type": "scifi:refining",
+	"ingredient": "scifi:tantinite",
+	"result": "scifi:tantalum_ingot",
+	"cookingtime": 200
+}
